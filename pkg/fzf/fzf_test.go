@@ -10,10 +10,6 @@ type testItem struct {
 	title string
 }
 
-func (ti testItem) Id() string {
-	return ti.title
-}
-
 func (ti testItem) String() string {
 	return fmt.Sprintf("%s", ti.title)
 }
@@ -60,7 +56,7 @@ func TestFzf_setFilteredItems(t *testing.T) {
 		t.Fatalf("filtered items length is not equal with expected")
 	}
 	for i, item := range f.filteredItems {
-		if item.Id() != expect[i].Id() {
+		if item.String() != expect[i].String() {
 			t.Fatalf("filtered items elements is not queal with expected")
 		}
 	}

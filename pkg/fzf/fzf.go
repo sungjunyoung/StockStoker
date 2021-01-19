@@ -12,7 +12,6 @@ const (
 )
 
 type Item interface {
-	Id() string
 	String() string
 }
 
@@ -44,7 +43,7 @@ func New(items Items) *Fzf {
 	}
 }
 
-func (f *Fzf) SelectContent() (Item, error) {
+func (f *Fzf) SelectItem() (Item, error) {
 	keysEvents, err := keyboard.GetKeys(10)
 	if err != nil {
 		return nil, err
@@ -74,7 +73,6 @@ func (f *Fzf) SelectContent() (Item, error) {
 		case keyboard.KeyArrowDown:
 			f.increaseIndexInFilteredItems()
 		case keyboard.KeyEnter:
-			f.renderer.clear()
 			return f.filteredItems[f.searchingIndex], nil
 		default:
 			f.searchingText += string(event.Rune)

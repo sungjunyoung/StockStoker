@@ -1,19 +1,23 @@
 package cmd
 
 import (
-	"os"
-
+	"fmt"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "stockstoker",
-	Short: "Hey developers! Check your stock in command line",
+	Short: "Developers! Check your stock price in your favorite terminal",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("NAVER 39,3000    \t+12%\nSAMSUNG 10,0000    \t+8%")
+	},
 }
 
 func init() {
-	rootCmd.AddCommand(marketCmd)
-	rootCmd.AddCommand(initCmd)
+	rootCmd.AddCommand(downloadCmd)
+	rootCmd.AddCommand(addCmd)
+	rootCmd.AddCommand(removeCmd)
 }
 
 func Execute() {
